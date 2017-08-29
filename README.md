@@ -1,1 +1,1 @@
-# react-bootstrap-webpack-boilerplate
+# Kalkulator dla firmy Doroti
