@@ -1,8 +1,8 @@
 import React from "react"
 
-import "./row.less"
+import "./calculationRow.less"
 
-export default class Row extends React.Component {
+export default class CalculationRow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,6 +12,7 @@ export default class Row extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.changeUnit = this.changeUnit.bind(this)
     }
 
     handleChange(event) {
@@ -27,6 +28,10 @@ export default class Row extends React.Component {
             const change = newResult - prevResult
             this.props.changeResult(change)
         })
+    }
+
+    changeUnit(eventKey, event) {
+        console.log(eventKey)
     }
 
     render() {

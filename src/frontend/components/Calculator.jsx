@@ -1,9 +1,10 @@
 import React from "react"
-import Row from "./Row"
+import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button, Glyphicon, Table } from "react-bootstrap"
+
+import CalculationRow from "./CalculationRow"
+import FinalResults from "./FinalResults"
 
 import "./calculator.less"
-
-import FinalResults from "./FinalResults"
 
 export default class Calculator extends React.Component {
     constructor(props) {
@@ -14,12 +15,18 @@ export default class Calculator extends React.Component {
         }
 
         this.changeResult = this.changeResult.bind(this)
-        this.addEmptyCalculationObject = this.addEmptyCalculationObject.bind(this)
+        this.addEmptyCalculationRows = this.addEmptyCalculationRows.bind(this)
     }
 
     componentDidMount() {
-        document.title = "Doroti | Kalkulator"
-        this.addEmptyCalculationObject()
+        document.title = "Doroti Kalkulator"
+        let favicon = document.createElement("link")
+        favicon.rel = "icon"
+        favicon.type = "image/x-icon"
+        favicon.href = require("../res/images/favicon.ico")
+        document.head.appendChild(favicon)
+
+        this.addEmptyCalculationRows(20)
     }
 
     changeResult(change) {
@@ -27,10 +34,13 @@ export default class Calculator extends React.Component {
         this.setState({result: newResult})
     }
 
-    addEmptyCalculationObject() {
+    addEmptyCalculationRows(value) {
         let fields = this.state.calculationFields
-        fields.push((<Row key={this.state.calculationFields.length} index={this.state.calculationFields.length} changeResult={(change) => this.changeResult(change)}/>))
-        
+
+        for(;value > 0; value--) {
+            fields.push((<CalculationRow key={this.state.calculationFields.length} index={this.state.calculationFields.length} changeResult={(change) => this.changeResult(change)}/>))
+        }
+
         this.setState((prevState, props) => ({
             calculationFields: fields
         }))
@@ -38,23 +48,56 @@ export default class Calculator extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid calculator">
-                <div className="row">
-                    <div className="col-md-0 col-lg-1"/>
-                    <div className="col-md-12 col-lg-10">
-                        <div className="calculation-rows">
-                            {this.state.calculationFields}
-                        </div>
+            <Grid bsClass="container-fluid calculator">
+                <Row>
+                    <Col sm={0} mdOffset={1} md={1}>
+                        <form>
+                            <FormGroup bsClass="form-group units" controlId="formControlsSelect">
+                                <FormControl componentClass="select">
+                                    <option value="mm">mm</option>
+                                    <option value="cm">cm</option>
+                                    <option value="cm">m</option>
+                                </FormControl>
+                            </FormGroup>
+                        </form>
+                    </Col>
 
-                        <button className="calculator-add-button" onClick={this.addEmptyCalculationObject}>
-                            +
-                        </button>
+                    <Col sm={12} md={4}>
+                        <Row>
+                            <Col sm={12}>
+                                {this.state.calculationFields}
+                            </Col>
+                        </Row>
 
-                        <FinalResults result={this.state.result} />
-                    </div>
-                    <div className="col-md-0 col-lg-1"/>
-                </div>
-            </div>
+                        <ButtonToolbar bsClass="btn-toolbar calculator-buttons">
+                            <Button onClick={() => this.addEmptyCalculationRows(1)}>
+                                <Glyphicon glyph="plus" /> 1
+                            </Button>
+
+                            <Button onClick={() => this.addEmptyCalculationRows(10)}>
+                                <Glyphicon glyph="plus" /> 10
+                            </Button>
+                        </ButtonToolbar>
+                    </Col>
+
+                        <Table bsClass="final-results-table">
+                            <thead>
+                                <tr className="final-results-headers">
+                                    <th>Milimetry</th>
+                                    <th>Centymetry</th>
+                                    <th>Metry</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="final-results-content">
+                                    <td>{this.state.result}</td>
+                                    <td>{this.state.result / 100}</td>
+                                    <td>{this.state.result / 100 / 10000}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                </Row>
+            </Grid>
         )
     }
 }

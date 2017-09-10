@@ -1,4 +1,5 @@
 import React from "react"
+import { Row, Col, Table } from "react-bootstrap"
 
 import "./finalResults.less"
 
@@ -9,10 +10,7 @@ export default class FinalResults extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-md-0 col-lg-6"/>
-                <div className="col-md-12 col-lg-6">
-                    <table className="final-results-table">
+                    <Table bsClass="final-results-table">
                         <thead>
                             <tr className="final-results-headers">
                                 <th>Milimetry</th>
@@ -27,9 +25,7 @@ export default class FinalResults extends React.Component {
                                 <td>{this.props.result / 100 / 10000}</td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>
-            </div>
+                    </Table>
         )
     }
 }
