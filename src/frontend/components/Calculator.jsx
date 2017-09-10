@@ -25,7 +25,7 @@ export default class Calculator extends React.Component {
         favicon.href = require("../res/images/favicon.ico")
         document.head.appendChild(favicon)
 
-        this.addEmptyCalculationRows(20)
+        this.addEmptyCalculationRows(15)
     }
 
     changeResult(change) {
@@ -49,9 +49,9 @@ export default class Calculator extends React.Component {
         return (
             <Grid bsClass="container-fluid calculator">
                 <Row>
-                    <Col sm={12} mdOffset={1} md={5}>
+                    <Col xs={12} mdOffset={1} md={6}>
                         <Row>
-                            <Col sm={12}>
+                            <Col xs={12}>
                                 {this.state.calculationFields}
                             </Col>
                         </Row>
@@ -67,9 +67,9 @@ export default class Calculator extends React.Component {
                         </ButtonToolbar>
                     </Col>
 
-                    <Col sm={0} md={4} className="calculator-right-menu">
+                    <Col xs={0} md={4} className="calculator-right-menu">
                         <Row>
-                            <Col smHidden md={8}>
+                            <Col xsHidden smHidden md={8}>
                                 <p className="units-text">Używane jednostki</p>
                             </Col>
                             <Col bsClass="col" md={4}>
@@ -88,9 +88,9 @@ export default class Calculator extends React.Component {
                         <Table bsClass="table final-results-table">
                             <thead>
                                 <tr className="final-results-head">
-                                    <th>Milimetry</th>
-                                    <th>Centymetry</th>
-                                    <th>Metry</th>
+                                    <th>Milimetry<sup>2</sup></th>
+                                    <th>Centymetry<sup>2</sup></th>
+                                    <th>Metry<sup>2</sup></th>
                                 </tr>
                             </thead>
                             <tbody>
