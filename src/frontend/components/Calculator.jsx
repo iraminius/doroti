@@ -2,7 +2,6 @@ import React from "react"
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button, Glyphicon, Table } from "react-bootstrap"
 
 import CalculationRow from "./CalculationRow"
-import FinalResults from "./FinalResults"
 
 import "./calculator.less"
 
@@ -50,19 +49,7 @@ export default class Calculator extends React.Component {
         return (
             <Grid bsClass="container-fluid calculator">
                 <Row>
-                    <Col sm={0} mdOffset={1} md={1}>
-                        <form>
-                            <FormGroup bsClass="form-group units" controlId="formControlsSelect">
-                                <FormControl componentClass="select">
-                                    <option value="mm">mm</option>
-                                    <option value="cm">cm</option>
-                                    <option value="cm">m</option>
-                                </FormControl>
-                            </FormGroup>
-                        </form>
-                    </Col>
-
-                    <Col sm={12} md={4}>
+                    <Col sm={12} mdOffset={1} md={5}>
                         <Row>
                             <Col sm={12}>
                                 {this.state.calculationFields}
@@ -80,9 +67,27 @@ export default class Calculator extends React.Component {
                         </ButtonToolbar>
                     </Col>
 
-                        <Table bsClass="final-results-table">
+                    <Col sm={0} md={4} className="calculator-right-menu">
+                        <Row>
+                            <Col smHidden md={8}>
+                                <p className="units-text">Używane jednostki</p>
+                            </Col>
+                            <Col bsClass="col" md={4}>
+                                <form className="units">
+                                    <FormGroup controlId="formControlsSelect">
+                                        <FormControl componentClass="select">
+                                            <option value="mm">mm</option>
+                                            <option value="cm">cm</option>
+                                            <option value="cm">m</option>
+                                        </FormControl>
+                                    </FormGroup>
+                                </form>
+                            </Col>
+                        </Row>
+
+                        <Table bsClass="table final-results-table">
                             <thead>
-                                <tr className="final-results-headers">
+                                <tr className="final-results-head">
                                     <th>Milimetry</th>
                                     <th>Centymetry</th>
                                     <th>Metry</th>
@@ -96,6 +101,7 @@ export default class Calculator extends React.Component {
                                 </tr>
                             </tbody>
                         </Table>
+                    </Col>
                 </Row>
             </Grid>
         )
