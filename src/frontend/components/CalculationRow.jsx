@@ -1,5 +1,5 @@
 import React from "react"
-import { Row, Col, Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from "react-bootstrap"
+import { Row, Col, Form, FormGroup, InputGroup, FormControl, Glyphicon } from "react-bootstrap"
 
 import "./calculationRow.less"
 
@@ -13,7 +13,6 @@ export default class CalculationRow extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
-        this.changeUnit = this.changeUnit.bind(this)
     }
 
     handleChange(event) {
@@ -31,36 +30,36 @@ export default class CalculationRow extends React.Component {
         })
     }
 
-    changeUnit(eventKey, event) {
-        console.log(eventKey)
-    }
-
     render() {
         return (
             <Row>
-                <Col xs={12}>
+                <Col bsClass="calculation-row col" xs={12}>
                     <Form inline>
-                        <Col componentClass={FormGroup} xs={5} sm={5} md={3}>
+                        <Col bsClass="number-icon col" xs={1} sm={1} lg={1}>
+                            {this.props.index}
+                        </Col>
+
+                        <Col componentClass={FormGroup} xs={5} sm={5} lg={3}>
                             <InputGroup bsClass="calculation-input input-group">
-                                <FormControl type="number" name="value1" value={this.state.value1} onChange={this.handleChange}/>
+                                <FormControl bsClass="calculation-form-input form-control" type="number" name="value1" value={this.state.value1} onChange={this.handleChange}/>
                             </InputGroup>
                         </Col>
 
-                        <Col bsClass="icon col" xs={2} sm={2} md={1}>
+                        <Col bsClass="icon col" xs={1} sm={1} lg={1}>
                             <Glyphicon glyph="remove"/>
                         </Col>
 
-                        <Col componentClass={FormGroup} xs={5} sm={5} md={3}>
+                        <Col componentClass={FormGroup} xs={5} sm={5} lg={3}>
                             <InputGroup bsClass="calculation-input input-group">
-                                <FormControl type="number" name="value2" value={this.state.value2} onChange={this.handleChange}/>
+                                <FormControl bsClass="calculation-form-input form-control" type="number" name="value2" value={this.state.value2} onChange={this.handleChange}/>
                             </InputGroup>
                         </Col>
 
-                        <Col bsClass="icon col" xsHidden smHidden md={1}>
+                        <Col bsClass="icon col" xsHidden smHidden mdHidden lg={1}>
                             <Glyphicon glyph="random"/>
                         </Col>
 
-                        <Col componentClass={FormGroup} xsHidden smHidden md={4}>
+                        <Col componentClass={FormGroup} xsHidden smHidden mdHidden lg={3}>
                             <InputGroup>
                                 <FormControl name="value1" value={this.state.result} />
                                 <InputGroup.Addon>mm<sup>2</sup></InputGroup.Addon>

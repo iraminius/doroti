@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button, Glyphicon, Table } from "react-bootstrap"
+import { Grid, Row, Col, FormGroup, FormControl, ButtonToolbar, Button, Glyphicon, Table } from "react-bootstrap"
 
 import CalculationRow from "./CalculationRow"
 
@@ -25,7 +25,7 @@ export default class Calculator extends React.Component {
         favicon.href = require("../res/images/favicon.ico")
         document.head.appendChild(favicon)
 
-        this.addEmptyCalculationRows(15)
+        this.addEmptyCalculationRows(10)
     }
 
     changeResult(change) {
@@ -36,8 +36,15 @@ export default class Calculator extends React.Component {
     addEmptyCalculationRows(value) {
         let fields = this.state.calculationFields
 
-        for(;value > 0; value--) {
-            fields.push((<CalculationRow key={this.state.calculationFields.length} index={this.state.calculationFields.length} changeResult={(change) => this.changeResult(change)}/>))
+        for(let i = 1; i <= value; i++) {
+            fields.push((
+                <CalculationRow 
+                    key={this.state.calculationFields.length} 
+                    index={this.state.calculationFields.length + 1} 
+                    units={this.state.units}
+                    changeResult={(change) => this.changeResult(change)}
+                />
+            ))
         }
 
         this.setState((prevState, props) => ({
@@ -70,15 +77,15 @@ export default class Calculator extends React.Component {
                     <Col xs={0} md={4} className="calculator-right-menu">
                         <Row>
                             <Col xsHidden smHidden md={8}>
-                                <p className="units-text">Używane jednostki</p>
+                                <p className="units-text">Wpisywane jednostki</p>
                             </Col>
                             <Col bsClass="col" md={4}>
                                 <form className="units">
                                     <FormGroup controlId="formControlsSelect">
-                                        <FormControl componentClass="select">
+                                        <FormControl componentClass="select" onChange={this.changeUnits}>
                                             <option value="mm">mm</option>
                                             <option value="cm">cm</option>
-                                            <option value="cm">m</option>
+                                            <option value="m">m</option>
                                         </FormControl>
                                     </FormGroup>
                                 </form>
