@@ -30835,7 +30835,7 @@ var Calculator = function (_React$Component) {
             favicon.href = __webpack_require__(454);
             document.head.appendChild(favicon);
 
-            this.addEmptyCalculationRows(15);
+            this.addEmptyCalculationRows(10);
         }
     }, {
         key: "changeResult",
@@ -30850,10 +30850,15 @@ var Calculator = function (_React$Component) {
 
             var fields = this.state.calculationFields;
 
-            for (; value > 0; value--) {
-                fields.push(_react2.default.createElement(_CalculationRow2.default, { key: this.state.calculationFields.length, index: this.state.calculationFields.length, changeResult: function changeResult(change) {
+            for (var i = 1; i <= value; i++) {
+                fields.push(_react2.default.createElement(_CalculationRow2.default, {
+                    key: this.state.calculationFields.length,
+                    index: this.state.calculationFields.length + 1,
+                    units: this.state.units,
+                    changeResult: function changeResult(change) {
                         return _this2.changeResult(change);
-                    } }));
+                    }
+                }));
             }
 
             this.setState(function (prevState, props) {
@@ -30918,7 +30923,7 @@ var Calculator = function (_React$Component) {
                                 _react2.default.createElement(
                                     "p",
                                     { className: "units-text" },
-                                    "U\u017Cywane jednostki"
+                                    "Wpisywane jednostki"
                                 )
                             ),
                             _react2.default.createElement(
@@ -30932,7 +30937,7 @@ var Calculator = function (_React$Component) {
                                         { controlId: "formControlsSelect" },
                                         _react2.default.createElement(
                                             _reactBootstrap.FormControl,
-                                            { componentClass: "select" },
+                                            { componentClass: "select", onChange: this.changeUnits },
                                             _react2.default.createElement(
                                                 "option",
                                                 { value: "mm" },
@@ -30945,7 +30950,7 @@ var Calculator = function (_React$Component) {
                                             ),
                                             _react2.default.createElement(
                                                 "option",
-                                                { value: "cm" },
+                                                { value: "m" },
                                                 "m"
                                             )
                                         )
@@ -42157,7 +42162,6 @@ var CalculationRow = function (_React$Component) {
         };
 
         _this.handleChange = _this.handleChange.bind(_this);
-        _this.changeUnit = _this.changeUnit.bind(_this);
         return _this;
     }
 
@@ -42180,11 +42184,6 @@ var CalculationRow = function (_React$Component) {
             });
         }
     }, {
-        key: "changeUnit",
-        value: function changeUnit(eventKey, event) {
-            console.log(eventKey);
-        }
-    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
@@ -42192,41 +42191,46 @@ var CalculationRow = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                     _reactBootstrap.Col,
-                    { xs: 12 },
+                    { bsClass: "calculation-row col", xs: 12 },
                     _react2.default.createElement(
                         _reactBootstrap.Form,
                         { inline: true },
                         _react2.default.createElement(
                             _reactBootstrap.Col,
-                            { componentClass: _reactBootstrap.FormGroup, xs: 5, sm: 5, md: 3 },
+                            { bsClass: "number-icon col", xs: 1, sm: 1, lg: 1 },
+                            this.props.index
+                        ),
+                        _react2.default.createElement(
+                            _reactBootstrap.Col,
+                            { componentClass: _reactBootstrap.FormGroup, xs: 5, sm: 5, lg: 3 },
                             _react2.default.createElement(
                                 _reactBootstrap.InputGroup,
                                 { bsClass: "calculation-input input-group" },
-                                _react2.default.createElement(_reactBootstrap.FormControl, { type: "number", name: "value1", value: this.state.value1, onChange: this.handleChange })
+                                _react2.default.createElement(_reactBootstrap.FormControl, { bsClass: "calculation-form-input form-control", type: "number", name: "value1", value: this.state.value1, onChange: this.handleChange })
                             )
                         ),
                         _react2.default.createElement(
                             _reactBootstrap.Col,
-                            { bsClass: "icon col", xs: 2, sm: 2, md: 1 },
+                            { bsClass: "icon col", xs: 1, sm: 1, lg: 1 },
                             _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: "remove" })
                         ),
                         _react2.default.createElement(
                             _reactBootstrap.Col,
-                            { componentClass: _reactBootstrap.FormGroup, xs: 5, sm: 5, md: 3 },
+                            { componentClass: _reactBootstrap.FormGroup, xs: 5, sm: 5, lg: 3 },
                             _react2.default.createElement(
                                 _reactBootstrap.InputGroup,
                                 { bsClass: "calculation-input input-group" },
-                                _react2.default.createElement(_reactBootstrap.FormControl, { type: "number", name: "value2", value: this.state.value2, onChange: this.handleChange })
+                                _react2.default.createElement(_reactBootstrap.FormControl, { bsClass: "calculation-form-input form-control", type: "number", name: "value2", value: this.state.value2, onChange: this.handleChange })
                             )
                         ),
                         _react2.default.createElement(
                             _reactBootstrap.Col,
-                            { bsClass: "icon col", xsHidden: true, smHidden: true, md: 1 },
+                            { bsClass: "icon col", xsHidden: true, smHidden: true, mdHidden: true, lg: 1 },
                             _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: "random" })
                         ),
                         _react2.default.createElement(
                             _reactBootstrap.Col,
-                            { componentClass: _reactBootstrap.FormGroup, xsHidden: true, smHidden: true, md: 4 },
+                            { componentClass: _reactBootstrap.FormGroup, xsHidden: true, smHidden: true, mdHidden: true, lg: 3 },
                             _react2.default.createElement(
                                 _reactBootstrap.InputGroup,
                                 null,
@@ -42294,7 +42298,7 @@ exports = module.exports = __webpack_require__(81)(undefined);
 
 
 // module
-exports.push([module.i, ".calculation-input {\n  width: 100%;\n  z-index: 0;\n}\n.icon {\n  color: white;\n  text-align: center;\n  margin-top: 7px;\n}\n", ""]);
+exports.push([module.i, ".calculation-row {\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  border-radius: 5px;\n  padding: 5px;\n  margin: 5px 0px 5px 0;\n}\n.calculation-input {\n  width: 100%;\n  z-index: 0;\n}\n.calculation-form-input {\n  border-radius: 5px !important;\n}\n.number-icon {\n  color: white;\n  text-align: center;\n  margin-right: 15px;\n  margin-left: -15px;\n  border-right: 1px dotted white;\n  padding-top: 7px;\n  height: 35px;\n  font-weight: bold;\n}\n.number-badge {\n  background-color: #A661E0 !important;\n  border: 1px solid black;\n  width: 100%;\n  padding: 10px 15px 10px 15px !important;\n}\n.icon {\n  color: white;\n  text-align: center;\n  margin-top: 7px;\n}\n", ""]);
 
 // exports
 
@@ -42434,7 +42438,7 @@ exports = module.exports = __webpack_require__(81)(undefined);
 
 
 // module
-exports.push([module.i, ".calculator {\n  margin-top: 50px;\n}\n.calculator-buttons {\n  margin-top: 50px;\n  margin-bottom: 200px;\n  margin-left: 8px !important;\n}\n@media screen and (max-width: 960px) {\n  .calculator-buttons {\n    margin-top: 10px;\n    margin-left: 0px !important;\n    position: fixed;\n    top: 0;\n    left: 10px;\n  }\n}\n.calculator-right-menu {\n  position: fixed !important;\n  right: 8.33333333%;\n  top: 40%;\n}\n.units {\n  width: 100%;\n}\n@media screen and (max-width: 960px) {\n  .units {\n    margin-top: 10px;\n    position: fixed;\n    top: 0;\n    right: 10px;\n    width: 33.33333333%;\n  }\n}\n.units-text {\n  color: white;\n  text-align: right;\n  font-size: 1.5em;\n}\n.final-results-table {\n  width: 100%;\n  margin: 0 !important;\n  color: white;\n  border: 2px solid rgba(0, 0, 0, 0.5);\n}\n@media screen and (max-width: 960px) {\n  .final-results-table {\n    position: fixed;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1030;\n  }\n}\n.final-results-table th,\n.final-results-table td {\n  width: 33.33333333%;\n  border: 2px solid rgba(0, 0, 0, 0.5) !important;\n  text-align: center;\n  padding: 10px;\n  margin: 0px 10px 0px 10px;\n}\n.final-results-head {\n  background-color: #622565;\n}\n.final-results-content {\n  background-color: #8445BB;\n}\n", ""]);
+exports.push([module.i, ".calculator {\n  margin-top: 50px;\n}\n@media screen and (max-width: 960px) {\n  .calculator {\n    margin-bottom: 100px;\n  }\n}\n.calculator-buttons {\n  margin-top: 40px;\n  margin-bottom: 40px;\n  margin-left: 8px !important;\n}\n@media screen and (max-width: 960px) {\n  .calculator-buttons {\n    margin-top: 10px;\n    margin-left: 0px !important;\n    position: fixed;\n    top: 0;\n    left: 10px;\n  }\n}\n.calculator-right-menu {\n  position: fixed !important;\n  right: 8.33333333%;\n  top: 40%;\n}\n.units {\n  width: 100%;\n}\n@media screen and (max-width: 960px) {\n  .units {\n    margin-top: 10px;\n    position: fixed;\n    top: 0;\n    right: 10px;\n    width: 33.33333333%;\n  }\n}\n.units-text {\n  color: white;\n  text-align: right;\n  font-size: 1.5em;\n}\n.final-results-table {\n  width: 100%;\n  margin: 0 !important;\n  color: white;\n  border: 2px solid rgba(0, 0, 0, 0.5);\n}\n@media screen and (max-width: 960px) {\n  .final-results-table {\n    position: fixed;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1030;\n  }\n}\n.final-results-table th,\n.final-results-table td {\n  width: 33.33333333%;\n  border: 2px solid rgba(0, 0, 0, 0.5) !important;\n  text-align: center;\n  padding: 10px;\n  margin: 0px 10px 0px 10px;\n}\n.final-results-head {\n  background-color: #622565;\n}\n.final-results-content {\n  background-color: #8445BB;\n}\n", ""]);
 
 // exports
 
