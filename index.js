@@ -42298,7 +42298,7 @@ exports = module.exports = __webpack_require__(81)(undefined);
 
 
 // module
-exports.push([module.i, ".calculation-row {\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  border-radius: 5px;\n  padding: 5px;\n  margin: 5px 0px 5px 0;\n}\n.calculation-input {\n  width: 100%;\n  z-index: 0;\n}\n.calculation-form-input {\n  border-radius: 5px !important;\n}\n.number-icon {\n  color: white;\n  text-align: center;\n  margin-left: -15px;\n  border-right: 1px dotted white;\n  padding-top: 7px;\n  height: 35px;\n  font-weight: bold;\n}\n.number-badge {\n  background-color: #A661E0 !important;\n  border: 1px solid black;\n  width: 100%;\n  padding: 10px 15px 10px 15px !important;\n}\n.icon {\n  color: white;\n  text-align: center;\n  margin-top: 7px;\n}\n", ""]);
+exports.push([module.i, ".calculation-row {\n  border: 1px solid rgba(255, 255, 255, 0.5);\n  border-radius: 5px;\n  padding: 5px 0px 5px 0px;\n  margin: 5px 0px 5px 0;\n}\n.calculation-input {\n  width: 100%;\n  z-index: 0;\n}\n.calculation-form-input {\n  border-radius: 5px !important;\n}\n.number-icon {\n  color: white;\n  text-align: center;\n  margin-left: -15px;\n  border-right: 1px dotted white;\n  padding-top: 7px;\n  height: 35px;\n  font-weight: bold;\n}\n.number-badge {\n  background-color: #A661E0 !important;\n  border: 1px solid black;\n  width: 100%;\n  padding: 10px 15px 10px 15px !important;\n}\n.icon {\n  color: white;\n  text-align: center;\n  padding-top: 7px;\n}\n", ""]);
 
 // exports
 
