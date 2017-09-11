@@ -13,6 +13,7 @@ export default class CalculationRow extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.selectText = this.selectText.bind(this)
     }
 
     handleChange(event) {
@@ -30,6 +31,10 @@ export default class CalculationRow extends React.Component {
         })
     }
 
+    selectText(event) {
+        event.target.select()
+    }
+
     render() {
         return (
             <Row>
@@ -41,7 +46,7 @@ export default class CalculationRow extends React.Component {
 
                         <Col componentClass={FormGroup} xs={5} sm={5} lg={3}>
                             <InputGroup bsClass="calculation-input input-group">
-                                <FormControl bsClass="calculation-form-input form-control" type="number" name="value1" value={this.state.value1} onChange={this.handleChange}/>
+                                <FormControl bsClass="calculation-form-input form-control" type="number" name="value1" value={this.state.value1} onFocus={this.selectText} onChange={this.handleChange}/>
                             </InputGroup>
                         </Col>
 
@@ -51,7 +56,7 @@ export default class CalculationRow extends React.Component {
 
                         <Col componentClass={FormGroup} xs={5} sm={5} lg={3}>
                             <InputGroup bsClass="calculation-input input-group">
-                                <FormControl bsClass="calculation-form-input form-control" type="number" name="value2" value={this.state.value2} onChange={this.handleChange}/>
+                                <FormControl bsClass="calculation-form-input form-control" type="number" name="value2" value={this.state.value2} onFocus={this.selectText} onChange={this.handleChange}/>
                             </InputGroup>
                         </Col>
 
