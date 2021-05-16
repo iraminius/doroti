@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const CalculatorContext = React.createContext(null);
 
-const initialRowsResults = Array.from(Array(50).keys()).map(() => ({
+const initialRows = Array.from(Array(50).keys()).map(() => ({
   width: 0,
   height: 0,
   quantity: 1,
@@ -12,7 +12,7 @@ const initialRowsResults = Array.from(Array(50).keys()).map(() => ({
 
 export const CalculatorProvider = ({ children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [rows, setRows] = useState(initialRowsResults);
+  const [rows, setRows] = useState(initialRows);
   const [result, setResult] = useState(0);
 
   const updateRow = (index, row) => {
@@ -29,6 +29,11 @@ export const CalculatorProvider = ({ children }) => {
     const updatedRows = [...rows];
     updatedRows.splice(index, 1);
     setRows(updatedRows);
+  };
+
+  const reset = () => {
+    setRows(initialRows);
+    setResult(0);
   };
 
   useEffect(() => {
@@ -48,7 +53,7 @@ export const CalculatorProvider = ({ children }) => {
     if (!isLoaded) {
       const savedRows = JSON.parse(localStorage.getItem("rows"));
       const savedResult = localStorage.getItem("result");
-      setRows(savedRows || initialRowsResults);
+      setRows(savedRows || initialRows);
       setResult(savedResult || 0);
       setIsLoaded(true);
     }
@@ -62,6 +67,7 @@ export const CalculatorProvider = ({ children }) => {
         updateRow,
         addRow,
         removeRow,
+        reset,
       }}
     >
       {children}

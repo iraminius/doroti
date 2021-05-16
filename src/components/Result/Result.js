@@ -1,9 +1,20 @@
 import React from "react";
 import { useCalculator } from "../../contexts/CalculatorContext";
-import { MainResult, ResultWrapper, SubResult } from "./Result.styles";
+import {
+  Actions,
+  MainResult,
+  PrintButton,
+  ResetButton,
+  ResultWrapper,
+  SubResult,
+} from "./Result.styles";
 
 export const Result = () => {
-  const { result } = useCalculator();
+  const { result, reset } = useCalculator();
+
+  const print = () => {
+    window.print();
+  };
 
   return (
     <ResultWrapper>
@@ -13,6 +24,10 @@ export const Result = () => {
       <SubResult>
         {result} mm<sup>2</sup>
       </SubResult>
+      <Actions>
+        <ResetButton onClick={reset}>RESET</ResetButton>
+        <PrintButton onClick={print}>DRUKUJ</PrintButton>
+      </Actions>
     </ResultWrapper>
   );
 };

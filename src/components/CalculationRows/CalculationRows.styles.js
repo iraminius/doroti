@@ -4,12 +4,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 420px;
-  padding: 24px 16px;
-  margin: auto;
 
   @media print {
-    max-width: 100%;
+    align-items: flex-start;
+    break-inside: avoid;
+
+    [data-row-result="0"] {
+      display: none;
+    }
   }
 `;

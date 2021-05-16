@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const CalculationField = styled.div`
-  width: 180px;
+  width: 80px;
   display: flex;
 `;
 
@@ -35,6 +35,12 @@ export const QuantityInput = styled.input`
 export const RowResult = styled.p`
   display: inline-block;
   margin: 0 0 0 16px;
-  width: 100%;
+  width: auto;
   text-align: right;
+  flex: 1;
+
+  @media print {
+    width: 100%;
+    text-align: center;
+  }
 `;

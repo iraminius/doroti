@@ -29,3 +29,10 @@ body {
   );
   margin: 0;
 }
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+}

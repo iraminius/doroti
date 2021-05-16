@@ -29,7 +29,7 @@ export const CalculationRow = ({ index, row }) => {
   };
 
   return (
-    <Container>
+    <Container data-row-result={row.result}>
       <CalculationField>
         <CalculationInput
           name="width"
