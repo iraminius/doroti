@@ -1,4 +1,4 @@
-import React, { useRef, memo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -11,68 +11,67 @@ import {
 } from "./CalculationRow.styles";
 import { useCalculator } from "../../contexts/CalculatorContext";
 
-export const CalculationRow = memo(
-  ({ index }) => {
-    console.log("render row", index);
+export const CalculationRow = ({ index, row }) => {
+  const { updateRow } = useCalculator();
 
-    const input1Ref = useRef();
-    const input2Ref = useRef();
-    const quantityRef = useRef();
-    const resultRef = useRef(0);
+  const handleFocus = (event) => {
+    event.target.select();
+  };
 
-    const { updateRow } = useCalculator();
-
-    const handleChange = () => {
-      const value1 = input1Ref.current.value ?? 0;
-      const value2 = input2Ref.current.value ?? 0;
-      const quantity = quantityRef.current.value ?? 0;
-      const result = value1 * value2 * quantity;
-      resultRef.current = result;
-      updateRow(index, result);
+  const handleChange = (event) => {
+    const updatedRow = {
+      ...row,
+      [event.target.name]: parseInt(event.target.value),
     };
+    updatedRow.result =
+      updatedRow.width * updatedRow.height * updatedRow.quantity;
+    updateRow(index, updatedRow);
+  };
 
-    return (
-      <Container>
-        <CalculationField>
-          <CalculationInput
-            type="number"
-            onChange={handleChange}
-            ref={input1Ref}
-          />
-        </CalculationField>
-        <CalculationField>
-          <CalculationInput
-            type="number"
-            onChange={handleChange}
-            ref={input2Ref}
-          />
-        </CalculationField>
-        <QuantityField>
-          <QuantityInput
-            type="number"
-            onChange={handleChange}
-            ref={quantityRef}
-            defaultValue={1}
-          />
-          <label>sztuk</label>
-        </QuantityField>
-        <RowResult>{resultRef.current} mm</RowResult>
-      </Container>
-    );
-  },
-  (prevProps, nextProps) => {
-    console.log(
-      "are props equal",
-      prevProps.index,
-      nextProps.index,
-      prevProps.index === nextProps.index
-    );
-    return prevProps.index === nextProps.index;
-  }
-);
+  return (
+    <Container>
+      <CalculationField>
+        <CalculationInput
+          name="width"
+          type="number"
+          value={row.width}
+          onChange={handleChange}
+          onClick={handleFocus}
+        />
+      </CalculationField>
+      <CalculationField>
+        <CalculationInput
+          name="height"
+          type="number"
+          value={row.height}
+          onChange={handleChange}
+          onClick={handleFocus}
+        />
+      </CalculationField>
+      <QuantityField>
+        <QuantityInput
+          name="quantity"
+          type="number"
+          value={row.quantity}
+          onChange={handleChange}
+          onClick={handleFocus}
+        />
+      </QuantityField>
+      <RowResult>
+        {row.result / 1000000} m<sup>2</sup>
+      </RowResult>
+    </Container>
+  );
+};
 
 CalculationRow.propTypes = {
   index: PropTypes.number.isRequired,
+  row: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    result: PropTypes.number.isRequired,
+  }),
 };
 
 CalculationRow.displayName = "CalculationRow";

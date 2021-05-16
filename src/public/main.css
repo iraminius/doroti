@@ -27,4 +27,5 @@ body {
     var(--background-color),
     var(--background-color-secondary)
   );
+  margin: 0;
 }

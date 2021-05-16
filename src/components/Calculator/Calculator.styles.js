@@ -6,6 +6,5 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: 420px;
-  padding: 24px;
-  margin: auto;
+  padding: 24px 16px;
 `;

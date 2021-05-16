@@ -5,17 +5,18 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+  margin-bottom: 8px;
 `;
 
 export const CalculationField = styled.div`
-  width: 100%;
-  max-width: 80px;
-  min-width: 60px;
+  width: 180px;
   display: flex;
 `;
 
 export const CalculationInput = styled.input`
   width: 100%;
+  height: min-content;
+  font-size: 16px;
 `;
 
 export const QuantityField = styled.div`
@@ -27,6 +28,8 @@ export const QuantityInput = styled.input`
   margin-left: 8px;
   margin-right: 2px;
   width: 48px;
+  height: min-content;
+  font-size: 16px;
 `;
 
 export const RowResult = styled.p`

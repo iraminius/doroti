@@ -4,9 +4,9 @@ import { useCalculator } from "../../contexts/CalculatorContext";
 import { CalculationRow } from "../CalculationRow/CalculationRow";
 
 export const CalculationRows = () => {
-  const { rowsResults } = useCalculator();
+  const { rows } = useCalculator();
 
-  return rowsResults.map((_, index) => (
-    <CalculationRow key={index} index={index} />
+  return rows.map((row, index) => (
+    <CalculationRow key={index} index={index} row={row} />
   ));
 };

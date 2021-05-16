@@ -3,42 +3,62 @@ import PropTypes from "prop-types";
 
 const CalculatorContext = React.createContext(null);
 
-const initialRowsResults = Array.from(Array(50).keys()).map(() => 0);
+const initialRowsResults = Array.from(Array(50).keys()).map(() => ({
+  width: 0,
+  height: 0,
+  quantity: 1,
+  result: 0,
+}));
 
 export const CalculatorProvider = ({ children }) => {
-  const [rowsResults, setRowsResults] = useState(initialRowsResults);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [rows, setRows] = useState(initialRowsResults);
   const [result, setResult] = useState(0);
 
-  const updateRow = (index, result) => {
-    console.log("update", index, result);
-    const newRowsResults = [...rowsResults];
-    newRowsResults[index] = result;
-    setRowsResults(newRowsResults);
+  const updateRow = (index, row) => {
+    const updatedRows = [...rows];
+    updatedRows[index] = row;
+    setRows(updatedRows);
   };
 
   const addRow = () => {
-    setRowsResults([...rowsResults, 0]);
+    setRows([...rows, { width: 0, height: 0, quantity: 1, result: 0 }]);
   };
 
   const removeRow = (index) => {
-    const newRowsResults = [...rowsResults];
-    newRowsResults.splice(index, 1);
-    setRowsResults(newRowsResults);
+    const updatedRows = [...rows];
+    updatedRows.splice(index, 1);
+    setRows(updatedRows);
   };
 
   useEffect(() => {
-    setResult(
-      rowsResults.reduce(
-        (previousValue, currentValue) => previousValue + currentValue
-      )
-    );
-  }, [rowsResults]);
+    let tempResult = 0;
+    rows.forEach((row) => (tempResult += row.result));
+    setResult(tempResult);
+  }, [rows]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem("rows", JSON.stringify(rows));
+      localStorage.setItem("result", result);
+    }
+  }, [rows, result]);
+
+  useEffect(() => {
+    if (!isLoaded) {
+      const savedRows = JSON.parse(localStorage.getItem("rows"));
+      const savedResult = localStorage.getItem("result");
+      setRows(savedRows || initialRowsResults);
+      setResult(savedResult || 0);
+      setIsLoaded(true);
+    }
+  }, [isLoaded]);
 
   return (
     <CalculatorContext.Provider
       value={{
         result,
-        rowsResults,
+        rows,
         updateRow,
         addRow,
         removeRow,
