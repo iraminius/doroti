@@ -1,0 +1,1 @@
+{"version":3,"sources":["../frontend/frontend/components/calculationRow.less"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,UAAA;;AAGJ;EACI,YAAA;EACA,kBAAA;EACA,eAAA","file":"src.80dfb952.css","sourceRoot":"../src/public","sourcesContent":[".calculation-input {\n    width: 100%;\n    z-index: 0;\n}\n\n.icon {\n    color: white;\n    text-align: center;\n    margin-top: 7px;\n}"]}
