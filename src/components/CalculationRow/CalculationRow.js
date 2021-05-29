@@ -9,9 +9,9 @@ import {
   QuantityInput,
   RowResult,
 } from "./CalculationRow.styles";
-import { useCalculator } from "../../contexts/CalculatorContext";
+import { useCalculator } from "../../CalculatorContext";
 
-export const CalculationRow = ({ index, row }) => {
+export const CalculationRow = ({ row }) => {
   const { updateRow } = useCalculator();
 
   const handleFocus = (event) => {
@@ -25,7 +25,7 @@ export const CalculationRow = ({ index, row }) => {
     };
     updatedRow.result =
       updatedRow.width * updatedRow.height * updatedRow.quantity;
-    updateRow(index, updatedRow);
+    updateRow(updatedRow);
   };
 
   return (
@@ -65,7 +65,6 @@ export const CalculationRow = ({ index, row }) => {
 };
 
 CalculationRow.propTypes = {
-  index: PropTypes.number.isRequired,
   row: PropTypes.shape({
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,

@@ -24,11 +24,16 @@
     "prettier": "^2.2.1"
   },
   "dependencies": {
+    "immer": "^9.0.2",
     "jspdf": "^2.3.1",
     "parcel-bundler": "^1.12.4",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1"
-  }
+    "styled-components": "^5.2.1",
+    "yup": "^0.32.9"
+  },
+  "browserslist": [
+    "since 2017-06"
+  ]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useCalculator } from "../../contexts/CalculatorContext";
+import { useCalculator } from "../../CalculatorContext";
 import {
   Actions,
   MainResult,

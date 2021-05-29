@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useCalculator } from "../../contexts/CalculatorContext";
+import { useCalculator } from "../../CalculatorContext";
 import { CalculationRow } from "../CalculationRow/CalculationRow";
 import { Container } from "./CalculationRows.styles";
 
@@ -9,8 +9,8 @@ export const CalculationRows = () => {
 
   return (
     <Container>
-      {rows.map((row, index) => (
-        <CalculationRow key={index} index={index} row={row} />
+      {rows.map((row) => (
+        <CalculationRow key={row.id} row={row} />
       ))}
     </Container>
   );

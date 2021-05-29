@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container } from "./Calculator.styles";
-import { CalculatorProvider } from "../../contexts/CalculatorContext";
+import { CalculatorProvider } from "../../CalculatorContext";
 import { Result } from "../Result/Result";
 import { CalculationRows } from "../CalculationRows/CalculationRows";
 
