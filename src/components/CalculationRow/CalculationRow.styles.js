@@ -17,6 +17,8 @@ export const CalculationInput = styled.input`
   width: 100%;
   height: min-content;
   font-size: 16px;
+  background-color: white;
+  color: black;
 `;
 
 export const QuantityField = styled.div`
@@ -30,6 +32,8 @@ export const QuantityInput = styled.input`
   width: 48px;
   height: min-content;
   font-size: 16px;
+  background-color: white;
+  color: black;
 `;
 
 export const RowResult = styled.p`
