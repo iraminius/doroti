@@ -1,1 +1,0 @@
-# Kalkulator dla firmy Doroti
